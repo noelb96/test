@@ -1,0 +1,202 @@
+html, body{
+    height: 100%;
+    background-color: white;
+}
+.top{
+    height: 6.5%;
+}
+.nopad{
+    position: relative;
+    width: 100%;
+    float: right;
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+.right{
+    margin-right:10px;
+    margin-top: 15px;
+}
+
+.navbar{
+    border-radius: 0;
+    background-color: #212323;
+    color: white;
+    border: none;
+}
+.top{
+    background-color: lightgray;
+}
+ul.nav{
+    float: right;
+    position: relative;
+}
+.main{
+    width: 100%;
+    height: 100%;
+}
+.container{
+    overflow: hidden;
+
+
+}
+
+.fill{
+    min-height: 100%;
+
+}
+.selection:hover{
+    font-size: 40px;
+    background-color:  black;
+    opacity: 0.5;
+    color: white;
+}
+
+.sell{
+    background-color: white;
+    height: fit-content;
+}
+
+table{
+    width: 100%;
+    height:inherit;
+
+    margin-bottom:20px;
+    padding-bottom: 20px;
+
+
+}
+form table tr td label{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    max-width:100%;
+    width:100%;
+    border-radius: 7px;
+}
+form table tr td .select{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-weight: bold;
+    max-width:100%;
+    width:92%;
+    height:30px;
+}
+form table thead tr td h3{
+    margin: 10px;
+}
+form table thead tr td h4{
+    margin: 10px;
+}
+
+form table tbody{
+    height:300px;
+}
+hr {
+    border: 1px solid lightgray;
+    margin-top:5px;
+    margin-left: 0;
+    margin-right: 150px;
+}
+
+.r1{
+    width: 90%;
+    float: left;
+    margin-right: 5%;
+    font-family: Arial;
+    margin-bottom: 5px;
+
+}
+input{
+    width: 90%;
+    height:30px;
+    border-radius: 5px;
+    /*float: right;*/
+
+}
+select{
+    width: 97%;
+    max-width:100%;
+}
+
+h4{
+    color:darkorange;
+}
+
+form table textarea{
+    margin:10px;
+    border-radius: 5px;
+}
+.testimonials_frame{
+    position:relative;
+    width:100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.mark{
+    float:right;
+    margin-right:40px;
+    cursor: pointer;
+}
+
+.mark:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.viewbox{
+
+    border-top: 5px solid #cccccc;
+    /*border-bottom: 5px solid #cccccc;*/
+    width:65%;
+    height:auto;
+    padding:8px;
+    margin:0;
+}
+
+.viewbox h3{
+    float:left;
+    padding-left:20px;
+}
+
+/*.quotation1{*/
+    /*float:left;*/
+
+/*}*/
+/*.quotation2{*/
+    /*float:right;*/
+    /*position: inherit;*/
+
+/*}*/
+.paragraf{
+    padding-left:30px;
+    padding-right:30px;
+
+    text-align: center;
+    padding-top:30px;
+    font-size: 20px;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .selection {
+        font-size: 30px;
+        padding-top: 10%;
+        color: gray;
+        font-weight: bold;
+        /*height: unset;*/
+        /*min-height: unset;*/
+
+    }
+
+    .navbar .navbar-collapse{
+        float: left;
+        margin-left: 5px;
+    }
+
+}

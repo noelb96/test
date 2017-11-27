@@ -1,0 +1,52 @@
+    footer{
+        /*height:auto;*/
+            /*padding-right: 50px;*/
+            /*padding-left: 50px;*/
+        width: 100%;
+
+
+    }
+
+    .fotofooter_div{
+
+        height:250px;
+        display:block;
+        float:right;
+
+        /*padding-left: 470px;*/
+    }
+ .logofooter{
+     max-width:550px;
+     height:200px;
+    display: block;
+     padding-left: auto;
+     padding-top: 40px;
+     padding-right: 70px;
+
+
+
+ }
+
+  .footerContainer{
+      max-width:100%;
+      width: 100%;
+      height:250px;
+      margin-left:0;
+      color:orange;
+      background-color: black;
+
+
+
+  }
+ .ContactUs{
+     float:left;
+       display: block;
+     color:orange;
+       padding: 10px 20px;
+     margin: 25px 20px;
+
+    }
+
+
+
+

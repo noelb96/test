@@ -1,0 +1,7 @@
+Create a new unset(AllCartSession['']) for product.php
+Create a new unset(SingleCartElement) for product.php
+Add to cart both product.php allWatches.php need better ajax implementation (addToCart button doesnt update Shopping bag without reload)
+SqlInjection Fix
+Regulate button positioning of product.php and allWathes.php
+MediaQuery
+Uninstall Wordpress
