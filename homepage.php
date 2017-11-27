@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: noelb
- * Date: 10/2/2017
- * Time: 8:28 PM
- */
 session_start();
 ?>
 <html lang="en">
@@ -20,12 +14,12 @@ session_start();
 </head>
 <body style="background-image: url(background2.jpg); height:100%;">
 <div class="top">
-    <!-- Navigation -->
+
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container nopad">
             <div class="try"></div>
             <div><img src="logo_90x90%20px.png" height='80px' width="80px"  style="float: left; margin: 0 0 0 50px;" ></div>
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -34,7 +28,6 @@ session_start();
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
@@ -65,11 +58,10 @@ session_start();
                     ?>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+
 
         </div>
 
-        <!-- /.container -->
     </nav>
 </div>
 
@@ -119,31 +111,3 @@ session_start();
 
 </footer>
 </html>
-<!---->
-<!--<script>-->
-<!--    $(document).ready(function(){-->
-<!--        $("#col-1").mouseover(function(){-->
-<!--            $(".navbar").animate({left: '25%', width: '75%'});-->
-<!--        });-->
-<!---->
-<!---->
-<!--        $("#col-2").mouseover(function(){-->
-<!--            $(".navbar").animate({left: '50%', width: '50%'});-->
-<!--        });-->
-<!---->
-<!---->
-<!--        $("#col-3").mouseover(function(){-->
-<!--            $(".navbar").animate({left: '75%', width: '25%'});-->
-<!--        });-->
-<!---->
-<!---->
-<!--        $("#col-4").mouseover(function(){-->
-<!--            $(".navbar").animate({width: '75%'});-->
-<!--        });-->
-<!--        $('#col-1, #col-2, #col-3, #col-4').mouseout(function(){-->
-<!--            $(".navbar").animate({left: '0', width: '100%'});-->
-<!--        });-->
-<!---->
-<!---->
-<!--    });-->
-<!--</script>-->

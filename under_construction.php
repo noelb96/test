@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bezhani
- * Date: 02/10/2017
- * Time: 17:22
- */
 ?>
 <html>
 <body style="padding: 0; margin: 0;">

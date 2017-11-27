@@ -2,7 +2,6 @@
 session_start();
 
 
-
 if (!isset($_SESSION['watchIdArray'])) {
     $_SESSION['watchIdArray'] = array();
 }

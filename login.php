@@ -15,10 +15,10 @@ if (isset($_REQUEST['submit'])) {
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-// set the PDO error mode to exception
+
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// prepare sql and bind parameters
+
         $stmt = $conn->query("SELECT * FROM user WHERE -1");
 
 
@@ -34,10 +34,10 @@ if (isset($_REQUEST['submit'])) {
            if ($user == $uname && $passQuery == md5($pass)) {
                $_SESSION['userId'] = $rows['userId'];
                header("Location: homepage.php");
-               $error = "logged"; //redirect to homepage and open session
+               $error = "logged";
            }else
                {
-                   $error = "not logged"; //re-enter data
+                   $error = "not logged";
                }
 
 
@@ -85,7 +85,7 @@ if (isset($_REQUEST['submit'])) {
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
@@ -108,10 +108,10 @@ if (isset($_REQUEST['submit'])) {
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+
         </div>
 
-        <!-- /.container -->
+
     </nav>
 </div>
 <div class="container main fill" style="margin-top: 100px;">

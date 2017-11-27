@@ -14,12 +14,6 @@ include_once("sellWatch.php");
 class crud_ implements crud{
 
     private $insert_query           = "INSERT INTO `sellwatch`( name, email, phone, brand, model, price, picture, papers, lastservice, comments) VALUES (:name ,:email ,:phone ,:brand, :model, :price, :picture, :papers, :lastservice, :comments )";
-    private $select_query_all       = "SELECT * FROM `sellwatch` WHERE 1";
-    private $select_query           = "SELECT * FROM `sellwatch` WHERE  id=:id";
-//    private $select_query_by_type   = "SELECT * FROM `events` WHERE  eventID=:eventID AND type=:type";
-//    private $update_query           = "UPDATE `events` SET  name=:name, descr=:descr, path=:path, startTime=:startTime, endTime=:endTime, type=:type WHERE eventID=:eventID";
-//    private $delete_query           = "DELETE FROM `events` WHERE eventID=:eventID";
-
 
     private $db_object;
     private $db;
@@ -32,18 +26,6 @@ class crud_ implements crud{
 
     public function create($object)
     {
-        $return_array = array(
-            "success" =>true,
-            "message" => ""
-        );
-//
-//        $validation = new Validate();
-//        if(!$validation->eventName($event->getName())){
-//            $event->getName();
-//            $return_array['success']= false;
-//            $return_array['message']= $validation->get_event_name_criteria();
-//        }
-
 
             $stmt=$this->db->prepare($this->insert_query);
             $stmt->bindValue(":name", $object->getName(), PDO::PARAM_STR);
@@ -58,7 +40,6 @@ class crud_ implements crud{
             $stmt->bindValue(":comments", $object->getComments(), PDO::PARAM_STR);
 
             $stmt->execute();
-//            return $return_array;
 
     }
 

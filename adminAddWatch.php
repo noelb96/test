@@ -10,10 +10,9 @@ if (isset($_SESSION['id'])=='admin') {
     if (isset($_REQUEST['addWatch'])) {
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-// set the PDO error mode to exception
+
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// prepare sql and bind parameters
             $stmt = $conn->prepare("INSERT INTO watchForSale (watchImage, watchName, watchDescription, watchPrice, watchAmount, specCollections, specCondition, specBrand, specMovement, specWaterRes, specGender, specWarranty, colorDial, colorStrap, materialCase, materialBand, productionId, modelNo) VALUES (:watchImage, :watchName, :watchDescription, :watchPrice, :watchAmount, :specCollections, :specCondition, :specBrand, :specMovement, :specWaterRes, :specGender, :specWarranty, :colorDial, :colorStrap, :materialCase, :materialBand, :productionId, :modelNo)");
 
             $stmt->bindValue(":watchImage", $_REQUEST['watchImage'], PDO::PARAM_STR);

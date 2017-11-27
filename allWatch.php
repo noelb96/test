@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 function showWatch(){
 
 $servername = "162.241.244.59";
@@ -10,7 +9,7 @@ $password = "Polo1951,,,";
 $dbname = "thewatm9_main";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+
 if ($conn->connect_error) {
     echo("Connection failed: " . $conn->connect_error);
 }
@@ -20,9 +19,9 @@ if ($conn->connect_error) {
 
         if (isset($cartArray)) {
             $cartArray = array_unique($cartArray);
-//            print_r($cartArray);
+
             foreach ($cartArray as $key => $value) {
-//                echo $value;
+
 
 
             }
@@ -32,15 +31,11 @@ if ($conn->connect_error) {
     $i=0;
 
 
-
-    // Create connection
-
-
     $sql = "SELECT watchId ,watchImage, watchName, watchDescription, watchPrice, watchAmount FROM watchForSale";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // output data of each row
+
         while($row = $result->fetch_assoc()) {
 
             $watchId = $row['watchId'];
@@ -65,7 +60,6 @@ if ($conn->connect_error) {
 ?>
 <html>
 <head>
-<!--   nuk njef fare scriptin si ajax.. hutohet qe te $ po a e ke linkun e jquery e kam.. po e kam posht....../-->
     <title>The Watch Shop LLC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,8 +74,7 @@ if ($conn->connect_error) {
       function cartAjax(inc,id) {
           console.log(inc);
           console.log(id);
-      //    var i=document.getElementsByClassName('button'+inc).val();
-            //console.log(i);
+
             $.ajax({
                 type: "POST",
                 url: "cart.php",
@@ -90,7 +83,7 @@ if ($conn->connect_error) {
                 }
             }).done(function( msg ) {
                $('#addToCartDiv').html(msg);
-               // alert( "Data Saved: " + msg );
+
             });
         }
     </script>
@@ -98,12 +91,12 @@ if ($conn->connect_error) {
 </head>
 <body>
 <div class="top">
-    <!-- Navigation -->
+
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container nopad">
             <div class="try"></div>
             <div><img src="logo_90x90%20px.png" height='80px' width="80px"  style="float: left; margin: 0 0 0 50px;" ></div>
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -143,10 +136,10 @@ if ($conn->connect_error) {
                     ?>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+
         </div>
 
-        <!-- /.container -->
+
     </nav>
 </div>
 
@@ -165,7 +158,7 @@ if ($conn->connect_error) {
 
 
     $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
+
     if ($conn->connect_error) {
         echo("Connection failed: " . $conn->connect_error);
     }
@@ -175,7 +168,7 @@ if ($conn->connect_error) {
     echo "<div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
     <div class=\"modal-dialog\">
 
-        <!-- Modal content-->
+ 
         <div class=\"modal-content\">
             <div class=\"modal-header\">
                 <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
@@ -203,7 +196,7 @@ if ($conn->connect_error) {
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-// output data of each row
+
                     while ($row = $result->fetch_assoc()) {
                         $watchId = $row['watchId'];
                         $watchName = $row['watchName'];

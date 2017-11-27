@@ -12,10 +12,10 @@ if (isset($_REQUEST['submit'])) {
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-// set the PDO error mode to exception
+
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// prepare sql and bind parameters
+
         $stmt = $conn->query("SELECT * FROM user WHERE -1");
 
         foreach ($stmt as $rows) {
@@ -90,7 +90,6 @@ if (isset($_REQUEST['submit'])) {
         padding-top: 16px;
     }
 
-    /* Change styles for span and cancel button on extra small screens */
     @media screen and (max-width: 300px) {
         span.psw {
             display: block;

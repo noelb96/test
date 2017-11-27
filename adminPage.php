@@ -9,10 +9,9 @@ if (isset($_SESSION['id'])=='admin'){
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-// set the PDO error mode to exception
+
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// prepare sql and bind parameters
         $stmt = $conn->query("SELECT * FROM tradepage WHERE -1");
 
         echo "<br/>";
