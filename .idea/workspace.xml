@@ -69,6 +69,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="NotesToSelf" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NotesToSelf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="produkti.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/produkti.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -216,7 +226,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="charge-credit-card.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="charge-credit-card.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/payment/charge-credit-card.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -339,7 +349,6 @@
         <option value="$PROJECT_DIR$/charge-credit.php" />
         <option value="$PROJECT_DIR$/css/produkti.css" />
         <option value="$PROJECT_DIR$/removeCartElement.php" />
-        <option value="$PROJECT_DIR$/NotesToSelf" />
         <option value="$PROJECT_DIR$/crud_.php" />
         <option value="$PROJECT_DIR$/sellpage.php" />
         <option value="$PROJECT_DIR$/send.php" />
@@ -353,6 +362,7 @@
         <option value="$PROJECT_DIR$/show_testimonials.php" />
         <option value="$PROJECT_DIR$/modal.php" />
         <option value="$PROJECT_DIR$/js/bootstrap.js" />
+        <option value="$PROJECT_DIR$/NotesToSelf" />
       </list>
     </option>
   </component>
@@ -562,12 +572,12 @@
       <workItem from="1511462620378" duration="15054000" />
       <workItem from="1511722280333" duration="5675000" />
       <workItem from="1511729171678" duration="5864000" />
-      <workItem from="1511816443552" duration="4231000" />
+      <workItem from="1511816443552" duration="4494000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212142000" />
+    <option name="totallyTimeSpent" value="212405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1612" height="867" extended-state="0" />
@@ -864,14 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NotesToSelf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="136" lean-forward="false" selection-start-line="2" selection-start-column="136" selection-end-line="2" selection-end-column="136" />
           <folding />
         </state>
       </provider>
@@ -1202,6 +1204,14 @@
             <marker date="1511822584876" expanded="true" signature="7150:7159" ph="..." />
             <marker date="1511822584876" expanded="true" signature="7150:7612" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NotesToSelf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
