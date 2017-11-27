@@ -64,17 +64,17 @@ class crud_ implements crud{
 
     public function read($id = -1)
     {
-        // TODO: Implement read() method.
+
     }
 
     public function update($object, $id)
     {
-        // TODO: Implement update() method.
+
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+
     }
 }
 ?>

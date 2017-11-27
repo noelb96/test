@@ -1,5 +1,5 @@
 <?php
-function sendMail($to,$name,$email,$phone)
+function sendAdminMail($to, $name, $email, $phone)
 {
 
     require_once "Mail1.php";

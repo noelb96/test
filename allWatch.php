@@ -195,8 +195,13 @@ if ($conn->connect_error) {
 
             foreach ($cartArray as $key => $value) {
 
-                $sql = "SELECT * FROM watchForSale WHERE watchId =" . $value;
-                $result = $conn->query($sql);
+                $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
+                $stmt->bind_param('s', $value);
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
                 if ($result->num_rows > 0) {
 // output data of each row
                     while ($row = $result->fetch_assoc()) {

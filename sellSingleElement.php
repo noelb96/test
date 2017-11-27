@@ -1,5 +1,6 @@
 <?php
 if (isset($_GET['sellId'])){
+    $sellId = $_GET['sellId'];
 
 
     $servername = "162.241.244.59";
@@ -14,8 +15,14 @@ if (isset($_GET['sellId'])){
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM sellwatch WHERE id=".$_GET['sellId'];
-    $result = $conn->query($sql);
+
+    $stmt = $conn->prepare('SELECT * FROM sellwatch WHERE id = ?');
+    $stmt->bind_param('s', $sellId);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {

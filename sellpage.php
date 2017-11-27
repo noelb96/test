@@ -55,7 +55,7 @@ if (isset($_REQUEST['submit'])){
 
 
 
-    sendMail($_REQUEST['email'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
+    sendAdminMail($_REQUEST['email'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
 
 }
 ?>
@@ -258,7 +258,7 @@ if (isset($_REQUEST['submit'])){
                     <tr>
                         <td><label><div class="r1">Comments </div><input type="text" name="comments"></label></td>
                     </tr>
-                    <tr><td><button class="buton" type="submit" name="submit" value="submit"> Submit </button></td></tr>
+                    <tr><td><input class="buton" type="submit" name="submit" value="submit"/></td></tr>
                 </table>
             </form>
         </div>

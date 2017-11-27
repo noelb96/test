@@ -8,15 +8,20 @@ function showWatchById()
     $password = "Polo1951,,,";
     $dbname = "thewatm9_main";
     if (isset($_GET['watchId'])) {
+        $watchId = $_GET['watchId'];
 // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
+        $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
+        $stmt->bind_param('s', $watchId);
 
-        $sql = "SELECT * FROM watchForSale WHERE watchId =" . $_GET['watchId'];
-        $result = $conn->query($sql);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
@@ -240,9 +245,14 @@ if (isset($_SESSION['watchIdArray'])) {
     $cartArray = array_unique($cartArray);
     foreach ($cartArray as $key => $value) {
 
-        $sql = "SELECT * FROM watchForSale WHERE watchId =" . $value;
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
+            $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
+            $stmt->bind_param('s', $value);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
 // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $watchName = $row['watchName'];

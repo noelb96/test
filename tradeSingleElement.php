@@ -1,6 +1,7 @@
 <?php
 session_start();
 if (isset($_GET['tradeId'])){
+    $tradeId = $_GET['tradeId'];
 
 
     $servername = "162.241.244.59";
@@ -17,6 +18,14 @@ if (isset($_GET['tradeId'])){
 
     $sql = "SELECT firstname, lastname, email, phone, country, referredBy, brandYouHave, modelYouHave, description, yourPrice, brandYouWant, modelYouWant, watchId FROM tradepage WHERE tradeId=".$_GET['tradeId'];
     $result = $conn->query($sql);
+
+    $stmt = $conn->prepare('SELECT firstname, lastname, email, phone, country, referredBy, brandYouHave, modelYouHave, description, yourPrice, brandYouWant, modelYouWant, watchId FROM tradepage WHERE tradeId = ?');
+    $stmt->bind_param('s', $sellId);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {

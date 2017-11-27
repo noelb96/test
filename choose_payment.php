@@ -7,6 +7,7 @@ $password = "Polo1951,,,";
 $dbname = "thewatm9_main";
 
 if (isset($_GET['watchId'])) {
+    $watchId = $_GET['watchId'];
 // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -14,8 +15,13 @@ if (isset($_GET['watchId'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM watchForSale WHERE watchId =" . $_GET['watchId'];
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
+    $stmt->bind_param('s', $watchId);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
