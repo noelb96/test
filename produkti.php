@@ -13,7 +13,7 @@ function showWatchById()
         $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
         if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            echo("Connection failed: " . $conn->connect_error);
         }
         $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
         $stmt->bind_param('s', $watchId);
@@ -224,7 +224,7 @@ $dbname = "thewatm9_main";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo("Connection failed: " . $conn->connect_error);
 }
 
 

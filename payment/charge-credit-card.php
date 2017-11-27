@@ -61,7 +61,7 @@ if (isset($_GET['watchId'])) {
     $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        echo("Connection failed: " . $conn->connect_error);
     }
 
     $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');

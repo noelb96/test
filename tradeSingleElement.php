@@ -13,11 +13,8 @@ if (isset($_GET['tradeId'])){
     $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        echo("Connection failed: " . $conn->connect_error);
     }
-
-    $sql = "SELECT firstname, lastname, email, phone, country, referredBy, brandYouHave, modelYouHave, description, yourPrice, brandYouWant, modelYouWant, watchId FROM tradepage WHERE tradeId=".$_GET['tradeId'];
-    $result = $conn->query($sql);
 
     $stmt = $conn->prepare('SELECT firstname, lastname, email, phone, country, referredBy, brandYouHave, modelYouHave, description, yourPrice, brandYouWant, modelYouWant, watchId FROM tradepage WHERE tradeId = ?');
     $stmt->bind_param('s', $sellId);

@@ -12,7 +12,7 @@ $dbname = "thewatm9_main";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo("Connection failed: " . $conn->connect_error);
 }
     if (isset($_SESSION['watchIdArray']))
     {
@@ -167,7 +167,7 @@ if ($conn->connect_error) {
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        echo("Connection failed: " . $conn->connect_error);
     }
 
 
