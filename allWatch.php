@@ -101,6 +101,19 @@ if ($conn->connect_error) {
 
             });
         }
+        
+        $(document).ready(function () {
+
+
+            $.ajax({
+                type: "POST",
+                url: "showCart.php"
+            }).done(function (msg) {
+                $('#showCartDiv').html(msg);
+
+            });
+
+        });
 
     </script>
 
