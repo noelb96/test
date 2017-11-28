@@ -21,23 +21,26 @@ function showWatchById()
         $stmt->execute();
 
         $result = $stmt->get_result();
-
+        $i = 0;
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $pic = $row['watchImage'];
                 echo "
     <div class=\"bcontainer main fill sell\">
+    
     <img  class=\"foto_produktit\" src=\"$pic\" alt=\"Omega Watch\" style='height=\"460px\" width=\"460px\"' >
-    <img  class=\"cart\" src=\"image/cart.png\">
+    <img  class=\"cart\" src=\"image/cart.png\" data-toggle=\"modal\" data-target=\"#myModal\" >
     <div class=\"pershkrimi\">
     <p> " . $row['watchName'] . " </p>
     <p class=\"model_nr\"> " . $row['modelNo'] . "</p>
     <p class=\"cmimi\"> $" . $row['watchPrice'] . " </p>
     <a href=\"choose_payment.php?watchId=" . $row["watchId"] . "\"><button class=\"button\" type=\"button\"> Purchase </button></a>
      <a href='inquire.php?watchId=" . $row["watchId"] . "'><button class=\"button2\" type=\"button\"> Make an Offer </button></a> 
-    <button id='myBtn' class=\"button3\" type=\"button\" data-toggle=\"modal\" data-target=\"#myModal\"> Add to Shopping Bag </button>
-   </div>
+    <button id='myBtn' class=\"button$i\" value='$i' onclick='cartAjax($i, $watchId)' name='addCart'> Add to Shopping Bag </button>
+   </div>";
+                $i++;
+                echo "
    <div  style='padding-left=\"50px\"'>
    <h3 style='padding-left=\"50px\"'>About the Watch</h3>
       <p class=\"aboutwatch\">" . $row['aboutwatch'] . "</p>
@@ -147,7 +150,23 @@ function showWatchById()
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function cartAjax(inc,id) {
+            console.log(inc);
+            console.log(id);
 
+            $.ajax({
+                type: "POST",
+                url: "cart.php",
+                data: { i: inc ,
+                    id:id
+                }
+            }).done(function( msg ) {
+                $('#addToCartDiv').html(msg);
+
+            });
+        }
+    </script>
 
 </head>
 
@@ -222,7 +241,7 @@ $dbname = "thewatm9_main";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+
 if ($conn->connect_error) {
     echo("Connection failed: " . $conn->connect_error);
 }
@@ -232,7 +251,7 @@ if ($conn->connect_error) {
 echo "<div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
     <div class=\"modal-dialog\">
 
-        <!-- Modal content-->
+ 
         <div class=\"modal-content\">
             <div class=\"modal-header\">
                 <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
@@ -240,10 +259,17 @@ echo "<div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
             </div>
             <div class=\"modal-body\">";
 
+$msg = "";
 if (isset($_SESSION['watchIdArray'])) {
     $cartArray = $_SESSION['watchIdArray'];
     $cartArray = array_unique($cartArray);
-    foreach ($cartArray as $key => $value) {
+    if (count($cartArray) == 0) {
+        $msg = "You have not selected any items";
+        echo $msg;
+    } else {
+
+
+        foreach ($cartArray as $key => $value) {
 
             $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
             $stmt->bind_param('s', $value);
@@ -253,29 +279,31 @@ if (isset($_SESSION['watchIdArray'])) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-// output data of each row
-            while ($row = $result->fetch_assoc()) {
-                $watchName = $row['watchName'];
-                $watchImage = $row['watchImage'];
 
-                echo "<p> $watchName <img src=\"$watchImage\" style='width: 50px; height: 50px';/></p>";
+                while ($row = $result->fetch_assoc()) {
+                    $watchId = $row['watchId'];
+                    $watchName = $row['watchName'];
+                    $watchImage = $row['watchImage'];
+
+                    echo "<p><a href='produkti.php?watchId=$watchId'><img src=\"$watchImage\" style='width: 50px; height: 50px; margin-left: 1%; margin-right: 5%;'/></a> $watchName <a href='removeCartElementProduct.php?key=$key&watchId=$watchId' style='float: right;;'><button type=\"button\" class=\"close\">&times;</button></a></p>";
+
+                }
             }
+
+
         }
-
-
     }
 }
-            echo "</div>
+echo "</div>
             <div class=\"modal-footer\">
+            <a href='clearCartProduct.php' style='float: left;'><button type=\"button\" class=\"btn btn-default\">Clear cart</button></a>
                 <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
             </div>
         </div>
 
     </div>
 </div>";
-
 ?>
-
 <?php showWatchById(); ?>
 
 </html>
