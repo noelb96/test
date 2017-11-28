@@ -30,14 +30,14 @@ function showWatchById()
     <div class=\"bcontainer main fill sell\">
     
     <img  class=\"foto_produktit\" src=\"$pic\" alt=\"Omega Watch\" style='height=\"460px\" width=\"460px\"' >
-    <img  class=\"cart\" src=\"image/cart.png\" data-toggle=\"modal\" data-target=\"#myModal\" >
+    <img  class=\"cart\" src=\"image/cart.png\" onclick='showCart();' data-toggle=\"modal\" data-target=\"#myModal\" >
     <div class=\"pershkrimi\">
     <p> " . $row['watchName'] . " </p>
     <p class=\"model_nr\"> " . $row['modelNo'] . "</p>
     <p class=\"cmimi\"> $" . $row['watchPrice'] . " </p>
     <a href=\"choose_payment.php?watchId=" . $row["watchId"] . "\"><button class=\"button\" type=\"button\"> Purchase </button></a>
      <a href='inquire.php?watchId=" . $row["watchId"] . "'><button class=\"button2\" type=\"button\"> Make an Offer </button></a> 
-    <button id='myBtn' class=\"button$i\" value='$i' onclick='cartAjax($i, $watchId)' name='addCart'> Add to Shopping Bag </button>
+    <button id='myBtn' class=\"button$i\" value='$i' onclick='cartAjax($i, $watchId); showCart();' name='addCart'> Add to Shopping Bag </button>
    </div>";
                 $i++;
                 echo "
@@ -168,6 +168,21 @@ function showWatchById()
         }
     </script>
 
+
+    <script>
+        function showCart() {
+
+            $.ajax({
+                type: "POST",
+                url: "showCart.php"
+            }).done(function( msg ) {
+                $('#showCartDiv').html(msg);
+
+            });
+        }
+    </script>
+
+
 </head>
 
 <body>
@@ -227,83 +242,27 @@ function showWatchById()
     </nav>
 
 </div>
-<?php
-
-$test = "null";
-$watchName = "null";
-$watchImage = "null";
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
 
-$servername = "162.241.244.59";
-$username = "thewatm9_eni";
-$password = "Polo1951,,,";
-$dbname = "thewatm9_main";
-
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    echo("Connection failed: " . $conn->connect_error);
-}
-
-
-
-echo "<div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
-    <div class=\"modal-dialog\">
-
- 
-        <div class=\"modal-content\">
-            <div class=\"modal-header\">
-                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
-                <h4 class=\"modal-title\">Your Cart</h4>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Your Cart</h4>
             </div>
-            <div class=\"modal-body\">";
-
-$msg = "";
-if (isset($_SESSION['watchIdArray'])) {
-    $cartArray = $_SESSION['watchIdArray'];
-    $cartArray = array_unique($cartArray);
-    if (count($cartArray) == 0) {
-        $msg = "You have not selected any items";
-        echo $msg;
-    } else {
-
-
-        foreach ($cartArray as $key => $value) {
-
-            $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
-            $stmt->bind_param('s', $value);
-
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-
-                while ($row = $result->fetch_assoc()) {
-                    $watchId = $row['watchId'];
-                    $watchName = $row['watchName'];
-                    $watchImage = $row['watchImage'];
-
-                    echo "<p><a href='produkti.php?watchId=$watchId'><img src=\"$watchImage\" style='width: 50px; height: 50px; margin-left: 1%; margin-right: 5%;'/></a> $watchName <a href='removeCartElementProduct.php?key=$key&watchId=$watchId' style='float: right;;'><button type=\"button\" class=\"close\">&times;</button></a></p>";
-
-                }
-            }
-
-
-        }
-    }
-}
-echo "</div>
-            <div class=\"modal-footer\">
-            <a href='clearCartProduct.php' style='float: left;'><button type=\"button\" class=\"btn btn-default\">Clear cart</button></a>
-                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
+            <div class="modal-body">
+                <div id="showCartDiv"></div>
+            </div>
+            <div class="modal-footer">
+                <a href='clearCart.php' style='float: left;'><button type="button" class="btn btn-default">Clear cart</button></a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
 
     </div>
-</div>";
-?>
+</div>
+
 <?php showWatchById(); ?>
 
 </html>

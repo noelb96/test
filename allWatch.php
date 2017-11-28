@@ -45,13 +45,14 @@ if ($conn->connect_error) {
                 ".$row['watchName']."<br/>
                 ".$row['watchDescription']."<br/>
                 Price ".$row['watchPrice']."$ <br/><br/>
-                <button class='button$i' value='$i' onclick='cartAjax($i, $watchId)' name='addCart'>Add to cart</button>
+                <button class='button$i' value='$i' onclick='cartAjax($i, $watchId); showCart();' name='addCart'>Add to cart</button>
                 ";
             $i++;
             echo "</div>
            </center>
            ";
         }
+        echo "<button id='myBtn' onclick='showCart();' class=\"btn btn-info btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\"> Shopping Bag </button>";
     } else {
         echo "0 results";
     }
@@ -86,6 +87,21 @@ if ($conn->connect_error) {
 
             });
         }
+    </script>
+
+    <script>
+        function showCart() {
+
+
+            $.ajax({
+                type: "POST",
+                url: "showCart.php"
+            }).done(function( msg ) {
+                $('#showCartDiv').html(msg);
+
+            });
+        }
+
     </script>
 
 </head>
@@ -144,83 +160,27 @@ if ($conn->connect_error) {
 </div>
 
 <div class="container main fill">
-    <?php
-
-    $test = "null";
-    $watchName = "null";
-    $watchImage = "null";
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
 
-    $servername = "162.241.244.59";
-    $username = "thewatm9_eni";
-    $password = "Polo1951,,,";
-    $dbname = "thewatm9_main";
-
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        echo("Connection failed: " . $conn->connect_error);
-    }
-
-
-
-    echo "<div class=\"modal fade\" id=\"myModal\" role=\"dialog\">
-    <div class=\"modal-dialog\">
-
- 
-        <div class=\"modal-content\">
-            <div class=\"modal-header\">
-                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
-                <h4 class=\"modal-title\">Your Cart</h4>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Your Cart</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="showCartDiv"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href='clearCart.php' style='float: left;'><button type="button" class="btn btn-default">Clear cart</button></a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class=\"modal-body\">";
 
-    $msg = "";
-    if (isset($_SESSION['watchIdArray'])) {
-        $cartArray = $_SESSION['watchIdArray'];
-        $cartArray = array_unique($cartArray);
-        if (count($cartArray) == 0) {
-            $msg = "You have not selected any items";
-            echo $msg;
-        } else {
-
-
-            foreach ($cartArray as $key => $value) {
-
-                $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
-                $stmt->bind_param('s', $value);
-
-                $stmt->execute();
-
-                $result = $stmt->get_result();
-
-                if ($result->num_rows > 0) {
-
-                    while ($row = $result->fetch_assoc()) {
-                        $watchId = $row['watchId'];
-                        $watchName = $row['watchName'];
-                        $watchImage = $row['watchImage'];
-
-                        echo "<p><a href='produkti.php?watchId=$watchId'><img src=\"$watchImage\" style='width: 50px; height: 50px; margin-left: 1%; margin-right: 5%;'/></a> $watchName <a href='removeCartElement.php?&key=$key' style='float: right;;'><button type=\"button\" class=\"close\">&times;</button></a></p>";
-
-                    }
-                }
-
-
-            }
-        }
-    }
-    echo "</div>
-            <div class=\"modal-footer\">
-            <a href='clearCart.php' style='float: left;'><button type=\"button\" class=\"btn btn-default\">Clear cart</button></a>
-                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
-            </div>
         </div>
-
     </div>
-</div>";
-    ?>
+
     <div>
         <div class="col-lg-3 col-md-3 col-sm-3 ">
             <h2>Brands we buy</h2>
@@ -249,7 +209,6 @@ if ($conn->connect_error) {
         <div class="col-lg-9 col-md-9 col-sm-6 fill">
 
 
-            <button id='myBtn' class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Shopping Bag </button>
             <?php
             showWatch();
 
