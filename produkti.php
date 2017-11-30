@@ -269,6 +269,7 @@ function showWatchById()
             </div>
             <div class="modal-footer">
                 <a href='clearCart.php' style='float: left;'><button type="button" class="btn btn-default">Clear cart</button></a>
+                <a href='buyAll.php' style='float: left;'><button type="button" class="btn btn-default">Buy all watches</button></a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -2,7 +2,7 @@
 session_start();
 $error = "";
 
-if (isset($_SESSION['userId']))
+if (!isset($_SESSION['userId']))
 {
 
 if (isset($_REQUEST['submit'])) {

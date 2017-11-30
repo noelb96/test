@@ -1,3 +1,119 @@
+<?php session_start();?>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../css/lista.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--    <script src="buy-controller.js"></script>-->
+    <script>
+        $(document).ready(function()
+        {
+            $('#buy-form').submit(function(event)
+            {
+                // immediately disable the submit button to prevent double submits
+                $('#buy-submit-button').attr("disabled", "disabled");
+
+                var fName = $('#first-name').val();
+                var lName = $('#last-name').val();
+                var email = $('#email').val();
+                var cardNumber = $('#card-number').val();
+                var cardCVC = $('#card-security-code').val();
+
+                // First and last name fields: make sure they're not blank
+                if (fName === "") {
+                    alert("Please enter your first name.");
+                    return;
+                }
+                if (lName === "") {
+                    alert("Please enter your last name.");
+                    return;
+                }
+
+                // Validate the email address:
+                var emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if (email === "") {
+                    alert("Please enter your email address.");
+                    return;
+                } else if (!emailFilter.test(email)) {
+                    alert("Your email address is not valid.");
+
+                }
+
+                // Stripe will validate the card number and CVC for us, so just make sure they're not blank
+                if (cardNumber === "") {
+                    alert("Please enter your card number.");
+
+                }
+                if (cardCVC === "") {
+                    alert("Please enter your card security code.");
+
+                }
+
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="top">
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container nopad">
+            <div class="try"></div>
+            <div><img src="logo_90x90%20px.png" height='80px' width="80px"  style="float: left; margin: 0 0 0 50px;" ></div>
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="right" href="#">Home</a>
+                    </li>
+                    <li>
+                        <a class="right" href="sellpage.php">Sell your watch</a>
+                    </li>
+                    <li>
+                        <a class="right" href="tradepage.php">Watch trading</a>
+                    </li>
+                    <li>
+                        <a class="right" href="allWatch.php">Watch for sale</a>
+                    </li>
+                    <li>
+                        <a class="right" href="show_testimonials.php">Testimonials</a>
+                    </li>
+                    <li>
+                        <a class="right" href="#Contact">Contact</a>
+                    </li>
+                    <?php if (isset($_SESSION['userId'])){
+                        echo "  <li>
+                        <a class=\"right\" href=\"logout.php\">Logout</a>
+                    </li>";
+                    }else{echo "  <li>
+                        <a class=\"right\" href=\"login.php\">Log in</a>
+                    </li>";}
+                    ?>
+                </ul>
+            </div>
+
+
+        </div>
+
+    </nav>
+</div>
+<div class="container">
+
 <?php
 require 'vendor/autoload.php';
 use net\authorize\api\contract\v1 as AnetAPI;
@@ -5,7 +121,6 @@ use net\authorize\api\controller as AnetController;
 
 define("AUTHORIZENET_LOG_FILE","phplog");
 
-session_start();
 $price = $_SESSION['price'];
 
 if (isset($_REQUEST['buy-submit-button'])){
@@ -75,58 +190,9 @@ if (isset($_GET['watchId'])) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             $watchImage = $row['watchImage'];
-            echo "<body>
-<div class=\"top\">
-    <!-- Navigation -->
-    <nav class=\"navbar navbar-inverse\" role=\"navigation\">
-        <div class=\"container nopad\">
-            <div class=\"try\"></div>
-            <div><img src=\"logo_90x90%20px.png\" height='80px' width=\"80px\"  style=\"float: left; margin: 0 0 0 50px;\" ></div>
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class=\"navbar-header\">
-                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">
-                    <span class=\"sr-only\">Toggle navigation</span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                    <span class=\"icon-bar\"></span>
-                </button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
-                <ul class=\"nav navbar-nav\">
-                    <li>
-                        <a class=\"right\" href=\"../homepage.php\">Home</a>
-                    </li>
-                    <li>
-                        <a class=\"right\" href=\"../sellpage.php\">Sell your watch</a>
-                    </li>
-                    <li>
-                        <a class=\"right\" href=\"../tradepage.php\">Watch trading</a>
-                    </li>
-                    <li>
-                        <a class=\"right\" href=\"../allWatch.php\">Watch for sale</a>
-                    </li>
-                    <li>
-                        <a class=\"right\" href=\"../show_testimonials.php\">Testimonials</a>
-                    </li>
-                    <li>
-                        <a class=\"right\" href=\"#Contact\">Contact</a>
-                    </li>";
-                    if (isset($_SESSION['userId'])){
-                        echo "<li><a class=\"right\" href=\"../logout.php\">Logout</a></li>";
-                    }else{echo " <li><a class=\"right\" href=\"../login.php\">Log in</a></li>";}
-                    echo "
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
+            echo "
 
-        <!-- /.container -->
-    </nav>
-</div>
-
-    <div class=\"bcontainer main fill sell\">
-    <div class=\"col-lg-1 col-md-1 col-sm-0\"></div>
+    
     <div class=\"col-lg-4 col-md-4 col-sm-6\">
     <center>
     <img  class=\"foto_produktit\" src=\"../$watchImage\" alt=\"Omega Watch\" style='height=\"460px\" width=\"460px\"' >
@@ -145,11 +211,57 @@ if (isset($_GET['watchId'])) {
     }
     $conn->close();
 
+} elseif (isset($_SESSION['watchIdArray'])) {
+$cartArray = $_SESSION['watchIdArray'];
+$cartArray = array_unique($cartArray);
+if (count($cartArray) == 0) {
+    $msg = "You have not selected any items";
+    echo $msg;
 } else {
-    echo "You have not selected any watch or an error occurred";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    foreach ($cartArray as $key => $value) {
+
+        $stmt = $conn->prepare('SELECT * FROM watchForSale WHERE watchId = ?');
+        $stmt->bind_param('s', $value);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                $watchImage = $row['watchImage'];
+
+    echo "
+    <div class=\"col-lg-3 col-md-3 col-sm-6\">
+   <center>
+    <img  class=\"foto_produktit\" src=\"../$watchImage\" alt=\"Omega Watch\" style='height=\"240px\" width=\"240px\"' >
+    <div class=\"pershkrimi\">
+    <p> ".$row['watchName']." </p>
+    <p class=\"model_nr\"> ".$row['modelNo']."</p>
+    <p class=\"cmimi\"> $".$row['watchPrice']." </p>
+    </div>
+    </center>
+    </div>
+    ";
+
+            }
+        }
+    }
+
+    echo "<strong>Total Price ".$_SESSION['price']."</strong>";
+
+
+    echo "<div class='col-lg-1 col-md-1 col-sm-0'></div>";
 }
+}else{
+    echo "Some Error has occured";
+}
+
 echo "
-<div class=\"col-lg-4 col-md-4 col-sm-6\">
+<div class=\"col-lg-3 col-md-3 col-sm-6\">
 <center>
 <form id=\"buy-form\" method=\"post\" action=\"\">
 
@@ -205,69 +317,8 @@ echo "<select id=\"expiration-year\" name=\"expyear\">";
 </form>
 </center>
 </div>
-</div> 
-</body>";
+";
 ?>
-<html>
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="../css/lista.css" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--    <script src="buy-controller.js"></script>-->
-    <script>
-        $(document).ready(function()
-        {
-            $('#buy-form').submit(function(event)
-            {
-                // immediately disable the submit button to prevent double submits
-                $('#buy-submit-button').attr("disabled", "disabled");
-
-                var fName = $('#first-name').val();
-                var lName = $('#last-name').val();
-                var email = $('#email').val();
-                var cardNumber = $('#card-number').val();
-                var cardCVC = $('#card-security-code').val();
-
-                // First and last name fields: make sure they're not blank
-                if (fName === "") {
-                    alert("Please enter your first name.");
-                    return;
-                }
-                if (lName === "") {
-                    alert("Please enter your last name.");
-                    return;
-                }
-
-                // Validate the email address:
-                var emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                if (email === "") {
-                    alert("Please enter your email address.");
-                    return;
-                } else if (!emailFilter.test(email)) {
-                    alert("Your email address is not valid.");
-
-                }
-
-                // Stripe will validate the card number and CVC for us, so just make sure they're not blank
-                if (cardNumber === "") {
-                    alert("Please enter your card number.");
-
-                }
-                if (cardCVC === "") {
-                    alert("Please enter your card security code.");
-
-                }
-
-            });
-        });
-
-
-    </script>
-</head>
+</div>
+</body>
 </html>

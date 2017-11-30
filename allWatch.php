@@ -22,8 +22,6 @@ if ($conn->connect_error) {
 
             foreach ($cartArray as $key => $value) {
 
-
-
             }
         }
     }
@@ -40,12 +38,14 @@ if ($conn->connect_error) {
 
             $watchId = $row['watchId'];
 
-            echo "<center><div class=\"col-lg-3 col-md-3 col-sm-6\">
+            echo "<center><div class=\"col-lg-4 col-md-4 col-sm-6\" style='height: 400px; min-height: 100%; max-width: 100%; position: relative;'>
                 <a href='produkti.php?watchId=".$row["watchId"]."'> <img src=".$row["watchImage"]." style='margin: 50px 10px 10px 10px;width: 200px; height: 200px;'/></a><br/>
                 ".$row['watchName']."<br/>
                 ".$row['watchDescription']."<br/>
                 Price ".$row['watchPrice']."$ <br/><br/>
-                <button class='button$i' value='$i' onclick='cartAjax($i, $watchId); showCart();' name='addCart'>Add to cart</button>
+                <div style='  position: absolute; bottom: 0; left: 0; right: 0;'>
+                <button class='button$i' value='$i' onclick='cartAjax($i, $watchId); showCart();' name='addCart';'>Add to cart</button>
+                </div>
                 ";
             $i++;
             echo "</div>
@@ -101,7 +101,7 @@ if ($conn->connect_error) {
 
             });
         }
-        
+
         $(document).ready(function () {
 
 
@@ -187,6 +187,7 @@ if ($conn->connect_error) {
                 </div>
                 <div class="modal-footer">
                     <a href='clearCart.php' style='float: left;'><button type="button" class="btn btn-default">Clear cart</button></a>
+                    <a href='buyAll.php' style='float: left;'><button type="button" class="btn btn-default">Buy all watches</button></a>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
