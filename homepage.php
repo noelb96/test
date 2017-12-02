@@ -5,12 +5,16 @@ session_start();
 <head>
     <title>The Watch Shop LLC</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="css/homepageCss.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Material Design Bootstrap -->
+    <link href="MDB%20Free/css/mdb.min.css" rel="stylesheet">
 </head>
 <body style="background-image: url(background2.jpg); height:100%;">
 <div class="top">
@@ -76,7 +80,7 @@ session_start();
             </div>
         </a>
         <a href="tradepage.php">
-            <div class="col-lg-3 col-md-3 col-sm-6 selection  fill " id="col-2">
+            <div class="col-lg-3 col-md-3 col-sm-6 selection fill " id="col-2">
                 <div>Watch</div>
                 <div>TRADING</div>
                 <div><img class="images" src="marker.png"/></div>
@@ -100,14 +104,67 @@ session_start();
     </div>
 </div>
 
+
+<footer class="page-footer center-on-small-only" style="background-color: #212323; margin: 0; padding-bottom: 0;">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+        <div class="row">
+            <!--First column-->
+            <div class="col-md-4">
+                <a href="homepage.php"> <img src="logo_50%20px.png" alt="Logo of the company" /></a>
+                <h5 class="title">Contact Us</h5>
+                <ul class="ContactUs">
+                    <li>Phone: 123456789 </li>
+                    <li>Email: info@thewatchshopllc.com</li>
+
+                </ul>
+            </div>
+
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-4">
+                <h5 class="title">Links</h5>
+                <ul class="ContactUs">
+                    <li> <a  href="homepage.php">Home</a></li>
+                    <li> <a href="sellpage.php">Sell Your Watch</a></li>
+                    <li> <a href="tradepage.php">Watch Trading </a></li>
+                    <li> <a href="allWatch.php">Watches for sale </a></li>
+                    <li> <a href="show_testimonials.php">Testimonials </a></li>
+
+                </ul>
+            </div>
+
+
+            <div class="col-md-4">
+                <h5 class="title">Follow us</h5>
+
+                <ul class="ContactUs">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img src="image/facebook.png" width='70px' height='70px'/></a>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <img src="image/instagra.png" width='50px' height='50px'/></a>
+                    <a href="https://www.ebay.com" >
+                        <img src="image/EBay.png" style="margin-left:10px;"  width='85px' height="60px"/></a>
+                </ul>
+            </div>
+            <!--/.Second column-->
+
+        </div>
+        <!--/.Footer Links-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2017 Copyright: <a href="https://www.thewatchshopllc.com"> thewatchshopllc.com </a>
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
 </body>
 
 
-<footer>
-    <a name="Contact"></a>
-    <?php
-    include('footer.php');
-    ?>
-
-</footer>
 </html>

@@ -31,17 +31,17 @@
     <ul class="ContactUs">
         <h3>Follow Us </h3>
         <a href="https://www.facebook.com" target="_blank">
-            <img src="image/facebook.png" width='70' height='70'/></a>
+            <img src="image/facebook.png" width='70px' height='70px'/></a>
         <a href="https://www.instagram.com" target="_blank">
-            <img src="image/instagra.png" width='50' height='50'/></a>
+            <img src="image/instagra.png" width='50px' height='50px'/></a>
         <a href="https://www.ebay.com" >
-            <img src="image/EBay.png" style="margin-left:10px;"  width='85' height="60"/></a>
+            <img src="image/EBay.png" style="margin-left:10px;"  width='85px' height="60px"/></a>
     </ul>
 
 
     <div class="fotofooter_div"">
     <a href="homepage.php"> <img class="logofooter" src="logo250.png"   alt="Logo of the company" /></a>
-    </div>
+
 
 
 
